@@ -6,7 +6,7 @@
 
 La interfaz y la salida generada están en inglés de forma predeterminada y **pueden cambiarse a coreano, chino, español o japonés en Ajustes (Sistema → Ajustes → Idioma de la interfaz).** Cambiar el idioma también cambia el idioma de los informes, los resúmenes y las respuestas de chat que generan los agentes.
 
-Español · [English](README.md) · [한국어](README.ko.md) · [中文](README.zh.md) · [日本語](README.ja.md)
+Español · [English](README.en.md) · [한국어](README.ko.md) · [中文](README.zh.md) · [日本語](README.ja.md)
 
 [![ci](https://github.com/jiwoochris/artex-global/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jiwoochris/artex-global/actions/workflows/ci.yml) [![detections](https://github.com/jiwoochris/artex-global/actions/workflows/detections.yml/badge.svg?branch=main)](https://github.com/jiwoochris/artex-global/actions/workflows/detections.yml) [![web](https://github.com/jiwoochris/artex-global/actions/workflows/web.yml/badge.svg?branch=main)](https://github.com/jiwoochris/artex-global/actions/workflows/web.yml) [![license: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 

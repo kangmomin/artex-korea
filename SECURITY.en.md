@@ -39,7 +39,7 @@ This repository is a **multilingual localization of the original ARTEX**, mainta
 The following are **not** covered by this security policy.
 
 - A vulnerability in **an external system** that you discovered by attacking it with ARTEX. That is something to report to the owner of that system.
-- Problems caused by running the tool against someone else's system without authorization. Such use itself violates the [usage scope](README.md#️-read-first--authorized-use-and-legal-notice) and domestic law.
+- Problems caused by running the tool against someone else's system without authorization. Such use itself violates the [usage scope](README.en.md#️-read-first--authorized-use-and-legal-notice) and domestic law.
 - The mere fact that ARTEX runs an offensive tool "by design." This tool is built to perform penetration testing within an authorized scope.
 
 If you witness **misuse** of this tool (use beyond the authorized scope), do not report it through GitHub. Use the lawful reporting channels appropriate to the conduct (the owner of the affected system or the relevant authorities).

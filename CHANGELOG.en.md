@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased: ARTEX Korea
+
+- Korean defaults and ARTEX Korea branding, including builtin prompts, tool descriptions, runtime messages and skill documentation.
+- Exact-default migrations preserve custom text, prompt history, settings and data.
+- Source-built Docker images and Korea-only release sources and staged update files.
+
 [한국어](CHANGELOG.md) · English · [中文 (upstream original)](CHANGELOG.zh.md)
 
 This document records the changes that the ARTEX global edition (this fork) adds on top of the upstream repository. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).

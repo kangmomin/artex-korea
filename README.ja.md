@@ -6,7 +6,7 @@
 
 UI と生成される出力はデフォルトで英語になっており、**設定（システム → 設定 → 表示言語）で韓国語・中国語・スペイン語・日本語に切り替えられます。** 言語を変えると、エージェントが生成するレポート・要約・チャット応答の言語も一緒に変わります。
 
-日本語 · [English](README.md) · [한국어](README.ko.md) · [中文](README.zh.md) · [Español](README.es.md)
+日本語 · [English](README.en.md) · [한국어](README.ko.md) · [中文](README.zh.md) · [Español](README.es.md)
 
 [![ci](https://github.com/jiwoochris/artex-global/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jiwoochris/artex-global/actions/workflows/ci.yml) [![detections](https://github.com/jiwoochris/artex-global/actions/workflows/detections.yml/badge.svg?branch=main)](https://github.com/jiwoochris/artex-global/actions/workflows/detections.yml) [![web](https://github.com/jiwoochris/artex-global/actions/workflows/web.yml/badge.svg?branch=main)](https://github.com/jiwoochris/artex-global/actions/workflows/web.yml) [![license: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 

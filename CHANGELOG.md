@@ -1,5 +1,12 @@
 # 변경 이력
 
+## 미출시: ARTEX Korea
+
+- 제품명과 웹 패키지를 ARTEX Korea / artex-korea-web으로 변경하고 기본 표시·출력 언어를 한국어로 설정했습니다.
+- 기본 에이전트 지침, 도구 설명, 실행 메시지와 내장 스킬 문서를 한국어로 옮겼습니다.
+- 기존 기본값만 이전하고 사용자 편집·프롬프트 이력·설정·데이터를 보존합니다.
+- Docker는 현재 소스를 빌드하며 업데이트는 한국판 저장소와 전용 임시 파일을 사용합니다.
+
 한국어 · [English](CHANGELOG.en.md) · [中文(원본·상류)](CHANGELOG.zh.md)
 
 이 문서는 ARTEX 글로벌판(이 포크)이 상류 저장소에 더한 변경을 기록합니다. 형식은 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 를 참고합니다.

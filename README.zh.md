@@ -4,7 +4,7 @@
 
 AI 自主渗透测试系统（Go 后端 + Next.js 前端）
 
-中文 · [English](README.md) · [한국어](README.ko.md) · [Español](README.es.md) · [日本語](README.ja.md)
+中文 · [English](README.en.md) · [한국어](README.ko.md) · [Español](README.es.md) · [日本語](README.ja.md)
 
 🌐 **在线 Demo**： [https://artex-demo.vercel.app/](https://artex-demo.vercel.app/)
 

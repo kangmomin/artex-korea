@@ -28,7 +28,7 @@ testing **autonomously**. Contributors are bound by the same scope limits as use
   network without authorization, or causing a disruption to it, violates the Act on Promotion
   of Information and Communications Network Utilization and Information Protection; and any
   personal data collected or exposed falls under the Personal Information Protection Act. The
-  full notice is in the [README](README.md#️-read-first--authorized-use-and-legal-notice).
+  full notice is in the [README](README.en.md#️-read-first--authorized-use-and-legal-notice).
 
 Legal responsibility for how the code or documentation you contribute is used rests with the
 user who runs it. This repository is provided "AS IS."
@@ -37,37 +37,15 @@ user who runs it. This repository is provided "AS IS."
 
 ## Localization policy
 
-The reason this repository exists is to **preserve the original
-[Autumn-27/ARTEX](https://github.com/Autumn-27/ARTEX) (currently unreachable, checked 2026-10) judgment performance exactly while
-changing only the user-facing output to Korean**. Translation contributions that depart from
-this policy can degrade performance, so we do not accept them.
+ARTEX Korea defaults to Korean, including the UI, builtin prompts, tool and skill descriptions, and runtime status messages. Existing explicit language preferences remain valid.
 
-- **Do not translate the agent's internal reasoning prompts (the behavior-instruction body).**
-  The behavior benchmarked in the original language (Chinese) must be preserved. This body
-  lives in `agent/promptcatalog.go` and the DB seed (`agent_prompts`). Translating it causes
-  drift in the agent's judgment.
-- **Only user-facing output is forced into the selected language (English by default).** This covers detection findings
-  (`report_finding`), fact summaries (`record_fact`), the final report, and chat responses.
-  The enforcement is a code-fixed tail called `langDirective()` in `agent/prompt.go`, appended
-  to the end of each role's system prompt. To change the output language, modify this function.
-- **Commands, payloads, code, URLs, and log text are not translated.** They are the originals
-  needed for analysis, so they are left as is.
-- **The original Chinese is preserved.** Documents keep the original in `README.zh.md` and UI
-  strings keep it in `web/messages/zh.json`, so that changes in the upstream repository are
-  easy to compare against. Korean translations are filled into `web/messages/ko.json`.
-- When you translate a new UI string, do not hard-code it; add it as a key in the message files.
-- **The output-language enforcement is a prompt nudge, not a hard cap.** `langDirective()`
-  **instructs** the model to output Korean; it does not force-lock the language. Korean fidelity
-  therefore varies with the model's capability, the role, and the context. Use a capable
-  (frontier-class) model when you verify localization changes. Cheap or small models can revert
-  reports and summaries to the original language (Chinese), so do not judge whether a translation
-  is applied correctly from a cheap model's output alone. The `max_tokens` pitfall when using
-  OpenAI-family models is covered in the
-  [README's "Model selection and output language" section](README.md#model-selection-and-output-language).
-- **The procedure for keeping up with upstream changes is in the maintainer document.** When
-  the original ARTEX is updated, the runbook for distinguishing preserved assets from
-  translation targets, reflecting them, and checking translation symmetry and drift is in
-  [MAINTAINING.en.md](MAINTAINING.en.md).
+- Translate instructions while preserving roles, scope, safety constraints, evidence standards, template variables, tool names and JSON contracts.
+- Keep commands, code, URLs, identifiers, external evidence, Chinese language catalogs and legacy parsing tokens intact.
+- Migrate only exact known defaults. Preserve custom prompts, history, tool descriptions, parameter defaults, bindings and disabled flags, including concurrent edits.
+- Validate translations with Go unit and isolated PostgreSQL tests, frontend tests and static builds, and documentation link checks. These checks do not establish model-quality parity.
+- Preserve attribution and the AGPL license. Build images from this checkout; enable release downloads only for a configured `<owner>/artex-korea` repository.
+
+The current migration and release policy is in [MAINTAINING.md](MAINTAINING.md).
 
 ---
 
@@ -85,7 +63,7 @@ The original (Chinese) is preserved as `finding-traffic-evidence-zh.md` in the s
 ### Required versions
 
 - Go 1.26 or later (per `go.mod`)
-- Node.js 22 or later (per the release workflow)
+- Node.js 24.15+ or 22.22.2+ (per the release workflow)
 - Docker and Docker Compose (for local runs and verification)
 
 ### Backend (Go)
@@ -174,7 +152,7 @@ Formatting and linting before commit are managed with Biome. `lint-staged` autom
 
 ```bash
 cp .env.example .env     # set POSTGRES_PASSWORD
-docker compose up -d     # start artex + postgres → http://localhost:8787
+docker compose up -d --build     # start artex + postgres → http://localhost:8787
 ```
 
 ---
