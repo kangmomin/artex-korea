@@ -1,2 +1,9 @@
 *.bat text eol=crlf
 *.sh  text eol=lf
+# Match the frontend formatter on Windows and Linux.
+web/**/*.ts text eol=lf
+web/**/*.tsx text eol=lf
+web/**/*.js text eol=lf
+web/**/*.mjs text eol=lf
+web/**/*.json text eol=lf
+web/**/*.css text eol=lf

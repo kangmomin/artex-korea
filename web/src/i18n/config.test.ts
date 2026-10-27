@@ -7,6 +7,7 @@ describe("i18n config", () => {
     expect([...LOCALES]).toEqual(["en", "ko", "zh", "es", "ja"]);
     expect(Object.keys(LOCALE_LABELS).sort()).toEqual([...LOCALES].sort());
     expect(LOCALE_LABELS.ko).toBe("한국어");
+    expect(DEFAULT_LOCALE).toBe("ko");
     expect(LOCALE_LABELS.ja).toBe("日本語");
   });
 
