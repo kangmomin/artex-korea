@@ -83,6 +83,9 @@ func TestCheckURLErrorsLocalized(t *testing.T) {
 // TestFetchLatestErrorsLocalized: 버전 확인 경로의 네 가지 오류(요청 제한·미발행·기타
 // 상태·해석 실패·tag 누락)가 한국어인지 확인한다. 가짜 transport 로 네트워크를 쓰지 않는다.
 func TestFetchLatestErrorsLocalized(t *testing.T) {
+	previous := Repo
+	Repo = "example-owner/artex-korea"
+	t.Cleanup(func() { Repo = previous })
 	ctx := context.Background()
 
 	_, errRate := FetchLatest(ctx, stubClient(http.StatusForbidden, ""))

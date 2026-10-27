@@ -10,12 +10,22 @@ import (
 	"time"
 )
 
-// Repo 是发布源。写死而不是做成配置项：更新源可配等于给任何能改配置的人一条
-// 远程代码执行通道，对一个渗透测试平台来说这个口子开不得。
-const Repo = "Autumn-27/artex"
+// Repo is fixed at build time by release CI (-ldflags -X). A local Korean
+// build has no update source and must never download the upstream binary.
+var Repo string
 
-// latestURL 是 GitHub 的"最新正式版"接口。它会自动跳过 prerelease 和 draft。
-const latestURL = "https://api.github.com/repos/" + Repo + "/releases/latest"
+func latestReleaseURL() (string, error) {
+	parts := strings.Split(Repo, "/")
+	if len(parts) != 2 || parts[0] == "" || !strings.EqualFold(parts[1], "artex-korea") {
+		return "", fmt.Errorf("한국판 릴리스 저장소가 지정되지 않았습니다. 현재 소스로 다시 빌드하여 업데이트하세요")
+	}
+	for _, c := range parts[0] {
+		if !((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '-') {
+			return "", fmt.Errorf("한국판 릴리스 저장소 형식이 올바르지 않습니다")
+		}
+	}
+	return "https://api.github.com/repos/" + Repo + "/releases/latest", nil
+}
 
 // allowedHosts 限定升级链路能访问的域名。配合下面的 checkRedirect，
 // 任何一跳被重定向到名单外的主机都会直接失败——这是防止 DNS 污染 / 中间人
@@ -86,6 +96,10 @@ func checkURL(u *url.URL) error {
 
 // FetchLatest 查询最新正式版。
 func FetchLatest(ctx context.Context, c *http.Client) (*Release, error) {
+	latestURL, err := latestReleaseURL()
+	if err != nil {
+		return nil, err
+	}
 	req, err := http.NewRequestWithContext(ctx, http.MethodGet, latestURL, nil)
 	if err != nil {
 		return nil, err

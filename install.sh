@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ARTEX 설치 스크립트: ① 전부 Docker  ② 로컬 컴파일 실행
+# ARTEX Korea 설치 스크립트: ① 전부 Docker  ② 로컬 컴파일 실행
 set -euo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
 
@@ -46,9 +46,8 @@ install_docker(){
     info "이미 있는 .env 파일을 그대로 사용합니다"
   fi
   info "이미지를 받아 기동합니다…"
-  docker compose pull || true
-  if ! docker compose up -d; then
-    warn "이미지 ghcr.io/jiwoochris/artex-global 를 받거나 기동하지 못했습니다(.env 의 ARTEX_TAG 가 발행된 태그인지, 네트워크가 되는지 확인하세요)"
+  if ! docker compose up -d --build; then
+    warn "artex-korea 소스 이미지 빌드 또는 기동에 실패했습니다(Docker 로그와 의존성 다운로드 연결을 확인하세요)"
     warn "이 스크립트를 다시 실행해 \"2) 로컬 실행 (go 컴파일)\" 을 고르거나, README \"소스에서 단일 바이너리 컴파일\" 경로로 빌드할 수도 있습니다"
     die "Docker Compose(전부 Docker) 기동에 실패했습니다"
   fi
@@ -117,7 +116,7 @@ JSON
 }
 
 echo "=============================="
-echo "  ARTEX 설치"
+echo "  ARTEX Korea 설치"
 echo "  1) 전부 Docker 설치"
 echo "  2) 로컬 실행 (go 컴파일)"
 echo "=============================="

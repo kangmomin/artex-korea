@@ -14,3 +14,7 @@ bench/.env
 bench/scheduler.py
 bench/entrypoint_v2.sh
 bench/seed_v2.sh
+# 로컬 인증 정보와 편집기 백업은 빌드 컨텍스트에서 제외합니다.
+.env*
+..env*
+config.json

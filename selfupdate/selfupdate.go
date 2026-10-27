@@ -43,10 +43,10 @@ const maxAttempts = 3
 type Paths struct {
 	Dir     string // 可执行文件所在目录
 	Current string // 当前运行的二进制        artex      / artex.exe
-	New     string // 暂存的新版本            artex.new  / artex.new.exe
-	Sum     string // 新版本的 sha256（hex）  artex.new.sha256 / artex.new.exe.sha256
-	Old     string // 换装前备份的旧版本      artex.old  / artex.old.exe
-	Marker  string // 升级状态标记            artex.upgrade.json
+	New     string // Korea-only staged binary, preserving .exe on Windows.
+	Sum     string // SHA-256 of the staged binary.
+	Old     string // Previous Korea binary for rollback.
+	Marker  string // Korea upgrade state, isolated from upstream pending updates.
 }
 
 // ResolvePaths 按当前可执行文件推导全部升级路径。
@@ -61,6 +61,10 @@ func ResolvePaths() (Paths, error) {
 	if resolved, err := filepath.EvalSymlinks(exe); err == nil {
 		exe = resolved
 	}
+	return koreaPaths(exe), nil
+}
+
+func koreaPaths(exe string) Paths {
 	dir := filepath.Dir(exe)
 	name := filepath.Base(exe)
 	ext := filepath.Ext(name) // Windows 上是 ".exe"，Unix 上通常为空
@@ -70,11 +74,11 @@ func ResolvePaths() (Paths, error) {
 	return Paths{
 		Dir:     dir,
 		Current: exe,
-		New:     join(".new"),
-		Sum:     join(".new") + ".sha256",
-		Old:     join(".old"),
-		Marker:  filepath.Join(dir, stem+".upgrade.json"),
-	}, nil
+		New:     join(".korea.new"),
+		Sum:     join(".korea.new") + ".sha256",
+		Old:     join(".korea.old"),
+		Marker:  filepath.Join(dir, stem+".korea.upgrade.json"),
+	}
 }
 
 // marker 记录一次换装的进度，用来在新版起不来时触发自动回滚。
