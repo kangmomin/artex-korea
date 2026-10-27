@@ -80,7 +80,7 @@ INDICATORS = [
     },
     {
         "label": "platform-guard audit framing marker",
-        "value": "【ARTEX 平台管控·非目标防御】",
+        "value": "[ARTEX Korea 플랫폼 제어 · 대상의 방어 기능 아님]",
         "sources": ["guard/guard.go"],
         "rules": ["detections/sigma/artex_guard_audit_framing.yml"],
     },

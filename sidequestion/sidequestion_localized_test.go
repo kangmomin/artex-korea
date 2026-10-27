@@ -55,24 +55,15 @@ func TestSideQuestionBudgetSentinelPreserved(t *testing.T) {
 	}
 }
 
-// TestSideQuestionBrainPreserved: the agent-brain prompts (the answering
-// instruction and the summary instruction) must stay in their benchmarked
-// Chinese. BRIEF 현지화 방침은 두뇌 본문을 번역하지 말고 출력 언어만 한국어로
-// 강제하라는 것이라, 이 두 프롬프트가 한국어로 바뀌면 벤치마크 동작이 드리프트한다.
-func TestSideQuestionBrainPreserved(t *testing.T) {
-	for _, c := range []struct{ label, text string }{
-		{"instruction", instruction},
-		{"summaryInstruction", summaryInstruction},
-	} {
-		han := false
+// Prompts use Korean while preserving the independent, read-only role.
+func TestSideQuestionPromptsKorean(t *testing.T) {
+	for _, c := range []struct{ label, text string }{{"instruction", instruction}, {"summaryInstruction", summaryInstruction}} {
+		assertKorean(t, c.label, c.text)
 		for _, r := range c.text {
 			if unicode.Is(unicode.Han, r) {
-				han = true
+				t.Errorf("%s contains untranslated text", c.label)
 				break
 			}
-		}
-		if !han {
-			t.Errorf("%s: 두뇌 프롬프트가 더 이상 중국어가 아닙니다(벤치마크 드리프트 위험)", c.label)
 		}
 	}
 }

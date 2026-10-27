@@ -40,7 +40,7 @@
         "category": "Artifacts dropped",
         "to_ids": true,
         "disable_correlation": false,
-        "value": "【ARTEX 平台管控·非目标防御】",
+        "value": "[ARTEX Korea 플랫폼 제어 · 대상의 방어 기능 아님]",
         "comment": "Control-framing prefix ARTEX writes to its audit log on a blocked tool call (guard/guard.go). Its presence in audit records supports an ARTEX-execution finding. Sigma: artex_guard_audit_framing.yml."
       },
       {

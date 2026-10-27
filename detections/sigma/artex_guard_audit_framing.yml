@@ -21,6 +21,7 @@ logsource:
 detection:
     keywords:
         - '【ARTEX 平台管控·非目标防御】'
+        - '[ARTEX Korea 플랫폼 제어 · 대상의 방어 기능 아님]'
     condition: keywords
 falsepositives:
     - Logs that quote this defense guide or the ARTEX source code for documentation purposes.

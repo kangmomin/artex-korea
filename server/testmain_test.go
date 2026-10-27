@@ -32,7 +32,6 @@ func TestMain(m *testing.M) {
 	// that need another language set it explicitly (t.Setenv / the settings table).
 	os.Setenv("ARTEX_LANG", "ko")
 
-
 	dsn, _, err := db.DSN()
 	if err != nil {
 		os.Exit(m.Run())

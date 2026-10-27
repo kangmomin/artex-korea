@@ -14,7 +14,7 @@ type FindingRecorder interface {
 
 // Tool-use guidance is appended without replacing the user's editable prompt.
 // It does not require capture or claim that unavailable traffic tools exist.
-const findingTrafficGuidance = "\n\n**漏洞流量证据（可选）**：调用 report_finding 上报漏洞时，如有已查看并确认支持漏洞结论的 HTTP 请求/响应，可用 traffic_refs 按复现顺序绑定真实 ID；域名和时间只作候选筛选，不推定关联。TCP 等非 HTTP 漏洞、未采集或无确切匹配时省略或传 []，在 evidence 保留命令输出、日志等其他可验证证据，建议说明未绑定原因。不要猜测 ID，也不要仅为补包重复探测。"
+const findingTrafficGuidance = "\n\n**취약점 트래픽 증거(선택 사항)**: report_finding으로 보고할 때 이미 읽고 취약점 결론을 뒷받침한다고 확인한 HTTP 요청/응답이 있으면 traffic_refs에 실제 ID를 재현 순서대로 연결합니다. 도메인과 시각은 후보 필터일 뿐 연관 근거가 아닙니다. TCP 등 비 HTTP 취약점, 미수집, 정확한 일치 기록 없음이면 생략하거나 []로 전달하고 evidence에 명령 출력·로그 등 검증 가능한 증거를 보존합니다. 연결하지 못한 이유를 설명하고, ID를 추측하거나 트래픽 보충만을 위해 다시 탐지하지 않습니다."
 
 func (t *ToolSet) SetFindingRecorder(r FindingRecorder)   { t.findingRecorder = r }
 func (w *Worker) SetFindingRecorder(r FindingRecorder)    { w.findingRecorder = r }
